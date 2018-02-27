@@ -1,7 +1,7 @@
 """
-Created on Tue Feb 27 13:40:45 2018
+Created on Wed Dec  6 21:27:07 2017
 
-@author: hristov
+@author: Paro
 
 This class translates the output of the SR algorithm to a readable mathematical
 formula. More precisely, the output of the SR algorithm is a evolutionary 
@@ -30,7 +30,7 @@ def GetFormula(SR):
     # Open the brackets (from tree to formula)
     simplified = FullIterator(oper_string) [1:-1]
     
-    simplified=simplify(string)
+    simplified = simplify(string)
     print("\nFormula \n")
     print(simplified)
     print("\nLatex Version \n")
