@@ -5,15 +5,24 @@ Created on Wed Jun 21 13:18:00 2017
 @author: Paro
 """
 import numpy as np
-from gplearn.genetic import SymbolicRegressor
 import MDP
 import pickle
+import TreeDecoder
+from gplearn.genetic import SymbolicRegressor
 
+    """
+    The main program that generates a closed-form expression for MDPs.
+    It uses the symbolic regression technique. Training data is generated
+    via solving the MDPs with the corresponding module. Hereby, we use the
+    already generated input data.
+    """
+    
 def RunMain(name, SR_metric, weights, sqrt, rho, rand_state):
     X_train, y_train, g_train, X_test, y_test, g_test = GenerateData(rho)
     SR = RunSR(X_train, y_train, X_test, weights, SR_metric, sqrt, rand_state)
     y_pred, g_pred, g_single, g_errors = EvalutePredicted(SR, X_test, g_test)
     SaveOutput(SR, g_pred, name)
+    formula = TreeDecoder(SR)
     return SR, y_pred, g_pred, g_single, g_errors
 
 def GenerateData(rho):
